@@ -18,12 +18,12 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
       <a href="/api/tiktok/logout" class="disconnect">Disconnect</a>
     </div>
 
-    <form class="composer">
+    <form class="composer" id="composer-form">
       <label for="caption">Caption</label>
       <textarea id="caption" name="caption" rows="4" placeholder="Write a caption for this post&hellip;"></textarea>
 
       <label for="privacy">Privacy level</label>
-      <select id="privacy" name="privacy">
+      <select id="privacy" name="privacy_level">
         ${(privacyOptions.length ? privacyOptions : ["SELF_ONLY"])
           .map((p) => `<option value="${escapeHtml(p)}">${escapeHtml(p.replace(/_/g, " "))}</option>`)
           .join("")}
@@ -31,11 +31,61 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
       <p class="hint">Unaudited apps are restricted to SELF_ONLY by TikTok regardless of what's selected here.</p>
 
       <label for="video">Video file</label>
-      <input type="file" id="video" name="video" accept="video/*">
+      <input type="file" id="video" name="video" accept="video/*" required>
+      <p class="hint">Single-chunk upload only, up to 64MB.</p>
 
-      <button type="submit" class="publish" disabled>Publish (coming soon)</button>
-      <p class="hint">The publish step isn't wired up yet &mdash; this screen previews the connected account and post settings ahead of that.</p>
+      <button type="submit" class="publish" id="publish-btn">Publish</button>
+      <p class="status" id="publish-status" aria-live="polite"></p>
     </form>
+    <script>
+      const form = document.getElementById("composer-form");
+      const btn = document.getElementById("publish-btn");
+      const statusEl = document.getElementById("publish-status");
+
+      function setStatus(text, isError) {
+        statusEl.textContent = text;
+        statusEl.style.color = isError ? "#b3261e" : "var(--muted)";
+      }
+
+      async function pollStatus(publishId) {
+        for (let i = 0; i < 40; i++) {
+          await new Promise((r) => setTimeout(r, 3000));
+          const res = await fetch("/api/tiktok/publish-status?publish_id=" + encodeURIComponent(publishId));
+          const data = await res.json();
+          const status = data && data.data && data.data.status;
+          if (status === "PUBLISH_COMPLETE") {
+            setStatus("Posted to TikTok.", false);
+            return;
+          }
+          if (status === "FAILED") {
+            setStatus("TikTok reported the post failed: " + (data.data.fail_reason || "unknown reason"), true);
+            return;
+          }
+          setStatus("Publishing... (" + (status || "processing") + ")", false);
+        }
+        setStatus("Still processing on TikTok's side - check back later.", false);
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        setStatus("Uploading...", false);
+        try {
+          const res = await fetch("/api/tiktok/publish", { method: "POST", body: new FormData(form) });
+          const data = await res.json();
+          if (!res.ok || data.error) {
+            setStatus("Failed: " + (data.message || data.error || res.status), true);
+            btn.disabled = false;
+            return;
+          }
+          setStatus("Uploaded, waiting for TikTok to process...", false);
+          await pollStatus(data.publish_id);
+        } catch (err) {
+          setStatus("Failed: " + err.message, true);
+        }
+        btn.disabled = false;
+      });
+    </script>
     `
     : `
     <p>No TikTok account connected yet.</p>
@@ -68,6 +118,7 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
   .composer textarea, .composer select, .composer input[type=file] { width: 100%; box-sizing: border-box; padding: 0.6rem; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
   .hint { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; }
   .composer button.publish { margin-top: 1.25rem; }
+  .composer .status { min-height: 1.2em; }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
   footer a { color: var(--accent); }
 </style>

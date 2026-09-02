@@ -69,6 +69,7 @@ export async function onRequestGet(context) {
     },
   });
   const creatorData = await creatorRes.json();
+  console.log("creator_info/query response:", JSON.stringify(creatorData));
   const creator = creatorData?.data || {};
 
   const sessionId = randomToken(32);

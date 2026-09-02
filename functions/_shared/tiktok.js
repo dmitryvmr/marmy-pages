@@ -6,9 +6,25 @@ export const TIKTOK_AUTH_URL = "https://www.tiktok.com/v2/auth/authorize/";
 export const TIKTOK_TOKEN_URL = "https://open.tiktokapis.com/v2/oauth/token/";
 export const TIKTOK_CREATOR_INFO_URL =
   "https://open.tiktokapis.com/v2/post/publish/creator_info/query/";
+export const TIKTOK_VIDEO_INIT_URL =
+  "https://open.tiktokapis.com/v2/post/publish/video/init/";
+export const TIKTOK_STATUS_URL =
+  "https://open.tiktokapis.com/v2/post/publish/status/fetch/";
 
 // Literal comma required - percent-encoding it (%2C) gets rejected by TikTok.
 export const TIKTOK_SCOPES = "user.info.basic,video.publish";
+
+// Matches config.py's TIKTOK_SINGLE_CHUNK_MAX_BYTES. This demo composer only
+// implements a single-PUT upload (no chunking) - fine for short review-demo
+// clips, not meant to replace post_to_tiktok.py's chunked path for real use.
+export const TIKTOK_SINGLE_CHUNK_MAX_BYTES = 64 * 1024 * 1024;
+
+export function jsonResponse(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json; charset=UTF-8" },
+  });
+}
 
 const COOKIE_PATH = "/api/tiktok";
 const PKCE_COOKIE_MAX_AGE = 600; // 10 min - just long enough to complete the redirect round trip
