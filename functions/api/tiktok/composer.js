@@ -89,23 +89,32 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
     `
     : `
     <p>No TikTok account connected yet.</p>
-    <a href="/api/tiktok/login" class="connect">Connect TikTok account</a>
+    <a href="/api/tiktok/login?return_to=composer" class="connect">Connect TikTok account</a>
     `;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Upload - Viamour</title>
+<title>Composer - Viamour</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <style>
   :root { --accent: #d9822b; --ink: #222; --muted: #666; --line: #eee; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 520px; margin: 0 auto; padding: 0 1.5rem 4rem; line-height: 1.6; color: var(--ink); }
-  header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 1.5rem; }
+  header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 0.5rem; }
   header.site img { width: 36px; height: 36px; border-radius: 50%; }
   header.site span { font-weight: 600; font-size: 1.1rem; color: var(--accent); }
+  nav.site { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  nav.site a { text-decoration: none; color: #fff; font-size: 0.82rem; font-weight: 600; padding: 0.4rem 0.9rem; border-radius: 999px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  nav.site a:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+  nav.site a.nav-home { background: #d9822b; }
+  nav.site a.nav-about { background: #3b82c4; }
+  nav.site a.nav-channels { background: #2f9e6e; }
+  nav.site a.nav-analytics { background: #8b5cf6; }
+  nav.site a.nav-updates { background: #e0577b; }
+  nav.site a.nav-contact { background: #64748b; }
   h1 { font-size: 1.3rem; }
   a.connect, button.publish { display: inline-block; background: var(--accent); color: #fff; border: none; padding: 0.7rem 1.3rem; border-radius: 8px; font-size: 1rem; text-decoration: none; cursor: pointer; }
   button.publish[disabled] { background: #ccc; cursor: not-allowed; }
@@ -128,9 +137,10 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
   <img src="/assets/header-icon.png" alt="Viamour icon">
   <span>Viamour</span>
 </header>
-<h1>Upload to TikTok</h1>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about.html" class="nav-about">About</a><a href="/channels.html" class="nav-channels">Channels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="/updates.html" class="nav-updates">Updates</a><a href="/contact.html" class="nav-contact">Contact</a></nav>
+<h1>Composer</h1>
 ${body}
-<footer><a href="/">Home</a></footer>
+<footer><a href="/">Home</a> &middot; <a href="/terms.html">Terms of Service</a> &middot; <a href="/privacy.html">Privacy Policy</a></footer>
 </body>
 </html>`;
 }

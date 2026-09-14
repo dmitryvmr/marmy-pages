@@ -13,9 +13,15 @@
   header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 0.5rem; }
   header.site img { width: 44px; height: 44px; border-radius: 50%; }
   header.site h1 { margin: 0; font-size: 1.6rem; }
-  nav.site { margin-bottom: 1.5rem; font-size: 0.9rem; }
-  nav.site a { color: var(--muted); text-decoration: none; margin-right: 1.1rem; }
-  nav.site a:hover { color: var(--accent); }
+  nav.site { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  nav.site a { text-decoration: none; color: #fff; font-size: 0.82rem; font-weight: 600; padding: 0.4rem 0.9rem; border-radius: 999px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  nav.site a:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+  nav.site a.nav-home { background: #d9822b; }
+  nav.site a.nav-about { background: #3b82c4; }
+  nav.site a.nav-channels { background: #2f9e6e; }
+  nav.site a.nav-analytics { background: #8b5cf6; }
+  nav.site a.nav-updates { background: #e0577b; }
+  nav.site a.nav-contact { background: #64748b; }
   h1.page-title, h2 { color: var(--accent); }
   h2 { font-size: 1.1rem; margin-top: 2.2rem; }
   a { color: var(--accent); }
@@ -29,7 +35,7 @@
   <img src="assets/header-icon.png" alt="Viamour icon">
   <h1>Viamour</h1>
 </header>
-<nav class="site"><a href="/">Home</a><a href="about.html">About</a><a href="channels.html">Channels</a><a href="/api/tiktok/analytics">Analytics</a><a href="updates.html">Updates</a><a href="contact.html">Contact</a></nav>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="about.html" class="nav-about">About</a><a href="channels.html" class="nav-channels">Channels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="updates.html" class="nav-updates">Updates</a><a href="contact.html" class="nav-contact">Contact</a></nav>
 
 <h1 class="page-title">About Viamour</h1>
 <p>Viamour is the operating brand behind a portfolio of AI-generated short-form
@@ -47,10 +53,10 @@ generation platform, from a detailed text prompt — no stock footage, no
 templates, no human actors.</div></div>
 <div class="step"><div class="num">3</div><div><strong>Review.</strong> Every generated episode is reviewed by a human before it goes
 out, including its caption, title, and tags for each destination platform.</div></div>
-<div class="step"><div class="num">4</div><div><strong>Publishing.</strong> The approved episode is published natively to each platform
-through that platform's own official API — TikTok's Content Posting API,
-YouTube's Data API, and Meta's Graph API for Instagram and Facebook. There is
-no manual re-uploading and no third-party scheduling tool in the loop.</div></div>
+<div class="step"><div class="num">4</div><div><strong>Publishing.</strong> The approved episode is published straight to TikTok,
+YouTube, Instagram, and Facebook, directly from Viamour to each platform.
+There's no manual re-uploading and no third-party scheduling tool in the
+loop.</div></div>
 
 <h2>Why we built this</h2>
 <p>Short-form video is naturally suited to AI generation: each piece is short,
@@ -60,16 +66,15 @@ dialogue. Viamour's channels are designed around that constraint from the
 start — stories that read clearly through action, timing, and expression
 alone.</p>
 
-<h2>TikTok integration</h2>
-<p>Viamour's TikTok app is used to publish a channel's own content to that
-channel's own TikTok account (currently <a href="https://www.tiktok.com/@marmaladepixels" target="_blank" rel="noopener">@marmaladepixels</a>,
-Marmalade Pixels), after the account owner explicitly authorizes the
-connection through TikTok's own OAuth consent screen. It also reads that
-same account's own published video list and per-video engagement stats
-(views, likes, comments, shares) via TikTok's Login Kit / Display API, shown
-live on the <a href="/api/tiktok/analytics">Analytics</a> page. See our
-<a href="privacy.html">Privacy Policy</a> for the full detail on what data is
-requested and how it's used.</p>
+<h2>Connecting with TikTok</h2>
+<p>Viamour's TikTok connection is used to publish a channel's own videos to
+that channel's own TikTok account (currently <a href="https://www.tiktok.com/@marmaladepixels" target="_blank" rel="noopener">@marmaladepixels</a>,
+Marmalade Pixels), after the account owner signs in and approves the
+connection on TikTok's own screen — never anyone else's account. It also
+reads that same account's own videos and stats (views, likes, comments,
+shares), shown live on the <a href="/api/tiktok/analytics">Analytics</a>
+page. See our <a href="privacy.html">Privacy Policy</a> for the full
+detail on what's requested and how it's used.</p>
 
 <footer>
   <a href="/">Home</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="contact.html">Contact</a>
