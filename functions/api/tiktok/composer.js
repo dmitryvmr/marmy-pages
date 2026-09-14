@@ -10,7 +10,7 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
   const body = connected
     ? `
     <div class="account">
-      ${avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" alt="" class="avatar">` : ""}
+      ${avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(nickname || 'Connected TikTok account')} profile photo" class="avatar">` : ""}
       <div>
         <div class="connected-label">Connected TikTok account</div>
         <div class="nickname">${escapeHtml(nickname || "(no nickname returned)")}</div>
@@ -98,7 +98,19 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
 <meta charset="UTF-8">
 <title>Composer - Viamour</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Connect a TikTok account to review and publish a Viamour channel's video, the same way a channel owner does.">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
+<link rel="canonical" href="https://viamour.com/api/tiktok/composer">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Viamour">
+<meta property="og:title" content="Composer - Viamour">
+<meta property="og:description" content="Connect a TikTok account to review and publish a Viamour channel's video, the same way a channel owner does.">
+<meta property="og:url" content="https://viamour.com/api/tiktok/composer">
+<meta property="og:image" content="https://viamour.com/assets/marmy-icon-source.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Composer - Viamour">
+<meta name="twitter:description" content="Connect a TikTok account to review and publish a Viamour channel's video, the same way a channel owner does.">
+<meta name="twitter:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <style>
   :root { --accent: #d9822b; --ink: #222; --muted: #666; --line: #eee; }

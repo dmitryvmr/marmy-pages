@@ -30,7 +30,7 @@ function videoCard(v) {
   const caption = (v.video_description || v.title || "").slice(0, 140);
   return `
   <a class="video-card" href="${escapeHtml(v.share_url || "#")}" target="_blank" rel="noopener">
-    ${v.cover_image_url ? `<img src="${escapeHtml(v.cover_image_url)}" alt="" loading="lazy">` : `<div class="cover-placeholder"></div>`}
+    ${v.cover_image_url ? `<img src="${escapeHtml(v.cover_image_url)}" alt="Thumbnail for ${escapeHtml(caption || 'this TikTok video')}" loading="lazy">` : `<div class="cover-placeholder"></div>`}
     <div class="video-body">
       <p class="video-caption">${escapeHtml(caption) || "(no caption)"}</p>
       <div class="video-stats">
@@ -56,7 +56,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   } else if (apiError) {
     body = `
     <div class="account">
-      ${avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" alt="" class="avatar">` : ""}
+      ${avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(nickname || 'Connected TikTok account')} profile photo" class="avatar">` : ""}
       <div><div class="connected-label">Connected TikTok account</div><div class="nickname">${escapeHtml(nickname || "")}</div></div>
       <a href="/api/tiktok/logout" class="disconnect">Disconnect</a>
     </div>
@@ -65,7 +65,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   } else {
     body = `
     <div class="account">
-      ${avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" alt="" class="avatar">` : ""}
+      ${avatarUrl ? `<img src="${escapeHtml(avatarUrl)}" alt="${escapeHtml(nickname || 'Connected TikTok account')} profile photo" class="avatar">` : ""}
       <div><div class="connected-label">Connected TikTok account</div><div class="nickname">${escapeHtml(nickname || "")}</div></div>
       <a href="/api/tiktok/logout" class="disconnect">Disconnect</a>
     </div>
@@ -87,8 +87,20 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <meta charset="UTF-8">
 <title>Analytics - Viamour</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="canonical" href="https://viamour.com/api/tiktok/analytics">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Viamour">
+<meta property="og:title" content="Analytics - Viamour">
+<meta property="og:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
+<meta property="og:url" content="https://viamour.com/api/tiktok/analytics">
+<meta property="og:image" content="https://viamour.com/assets/marmy-icon-source.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Analytics - Viamour">
+<meta name="twitter:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
+<meta name="twitter:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <style>
   :root { --accent: #d9822b; --ink: #222; --muted: #666; --line: #eee; }
   * { box-sizing: border-box; }
