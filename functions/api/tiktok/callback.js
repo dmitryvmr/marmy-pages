@@ -1,6 +1,8 @@
 import {
   TIKTOK_TOKEN_URL,
   TIKTOK_CREATOR_INFO_URL,
+  RETURN_TO_DESTINATIONS,
+  DEFAULT_RETURN_TO,
   parseCookies,
   randomToken,
   sessionCookieHeader,
@@ -92,10 +94,16 @@ export async function onRequestGet(context) {
     expirationTtl: Math.max(tokenData.expires_in || 3600, 60),
   });
 
-  const headers = new Headers({ Location: "/api/tiktok/composer" });
+  const requestedReturnTo = cookies.tt_return_to;
+  const returnTo = RETURN_TO_DESTINATIONS[requestedReturnTo]
+    ? RETURN_TO_DESTINATIONS[requestedReturnTo]
+    : RETURN_TO_DESTINATIONS[DEFAULT_RETURN_TO];
+
+  const headers = new Headers({ Location: returnTo });
   headers.append("Set-Cookie", sessionCookieHeader(sessionId, tokenData.expires_in || 3600));
   headers.append("Set-Cookie", clearCookieHeader("tt_verifier"));
   headers.append("Set-Cookie", clearCookieHeader("tt_state"));
+  headers.append("Set-Cookie", clearCookieHeader("tt_return_to"));
 
   return new Response(null, { status: 302, headers });
 }

@@ -9,9 +9,12 @@
 <style>
   :root { --accent: #d9822b; --ink: #222; --muted: #666; --line: #eee; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 640px; margin: 0 auto; padding: 0 1.5rem 4rem; line-height: 1.6; color: var(--ink); }
-  header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 1rem; }
+  header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 0.5rem; }
   header.site img { width: 36px; height: 36px; border-radius: 50%; }
   header.site span { font-weight: 600; font-size: 1.1rem; color: var(--accent); }
+  nav.site { margin-bottom: 1.5rem; font-size: 0.9rem; }
+  nav.site a { color: var(--muted); text-decoration: none; margin-right: 1.1rem; }
+  nav.site a:hover { color: var(--accent); }
   h1, h2 { color: var(--accent); }
   a { color: var(--accent); }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
@@ -22,8 +25,10 @@
   <img src="assets/header-icon.png" alt="Viamour icon">
   <span>Viamour</span>
 </header>
+<nav class="site"><a href="/">Home</a><a href="about.html">About</a><a href="channels.html">Channels</a><a href="/api/tiktok/analytics">Analytics</a><a href="updates.html">Updates</a><a href="contact.html">Contact</a></nav>
+
 <h1>Privacy Policy</h1>
-<p><em>Last updated: September 1, 2026</em></p>
+<p><em>Last updated: September 14, 2026</em></p>
 
 <p><strong>Viamour</strong> ("we", "us") is the brand and operator behind a
 portfolio of AI-generated short-form video channels, including
@@ -33,20 +38,25 @@ policy covers Viamour's app registered with TikTok and any other platform
 integration Viamour operates on behalf of its channels.</p>
 
 <h2>What we collect</h2>
-<p>Viamour's TikTok integration requests only the minimum OAuth scope needed
-to publish video content to the TikTok accounts it operates
-(<code>video.publish</code>), currently @marmaladepixels. Each account is
-connected only after its owner explicitly authorizes Viamour via TikTok's
-own OAuth consent screen. We do not collect, store, or process personal
-data belonging to TikTok viewers or other TikTok users — only the
-credentials (access and refresh tokens) needed to publish to the channel
-accounts Viamour itself operates.</p>
+<p>Viamour's TikTok integration requests only the OAuth scopes needed to
+operate the channel accounts it runs, currently @marmaladepixels:</p>
+<ul>
+  <li><code>video.publish</code> — to publish a channel's own video content to its own connected TikTok account.</li>
+  <li><code>user.info.basic</code> — to display the connected account's nickname and avatar back to the person who connected it.</li>
+  <li><code>user.info.stats</code> and <code>video.list</code> — to read that same connected account's own follower/like counts and its own published videos' view/like/comment/share counts, shown on our <a href="/api/tiktok/analytics">Analytics</a> page.</li>
+</ul>
+<p>Each account is connected only after its owner explicitly authorizes
+Viamour via TikTok's own OAuth consent screen. We do not collect, store, or
+process personal data belonging to TikTok viewers or other TikTok users —
+only the credentials and aggregate stats belonging to the channel accounts
+Viamour itself operates.</p>
 
 <h2>How tokens are used</h2>
 <p>Access and refresh tokens issued by TikTok are used exclusively to
 publish a channel's own Content to that channel's own connected TikTok
-account, and are stored securely for that sole purpose. They are never
-shared with third parties.</p>
+account and to read that same account's own stats back to it, and are
+stored securely for those purposes only. They are never shared with third
+parties.</p>
 
 <h2>Third-party services</h2>
 <p>Video content is generated using a third-party AI generation service
@@ -58,7 +68,7 @@ service.</p>
 above will reflect the most recent revision.</p>
 
 <footer>
-  <a href="index.html">Home</a> &middot; <a href="terms.html">Terms of Service</a>
+  <a href="/">Home</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="contact.html">Contact</a>
 </footer>
 </body>
 </html>

@@ -9,9 +9,12 @@
 <style>
   :root { --accent: #d9822b; --ink: #222; --muted: #666; --line: #eee; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 640px; margin: 0 auto; padding: 0 1.5rem 4rem; line-height: 1.6; color: var(--ink); }
-  header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 1rem; }
+  header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 0.5rem; }
   header.site img { width: 36px; height: 36px; border-radius: 50%; }
   header.site span { font-weight: 600; font-size: 1.1rem; color: var(--accent); }
+  nav.site { margin-bottom: 1.5rem; font-size: 0.9rem; }
+  nav.site a { color: var(--muted); text-decoration: none; margin-right: 1.1rem; }
+  nav.site a:hover { color: var(--accent); }
   h1, h2 { color: var(--accent); }
   a { color: var(--accent); }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
@@ -22,8 +25,10 @@
   <img src="assets/header-icon.png" alt="Viamour icon">
   <span>Viamour</span>
 </header>
+<nav class="site"><a href="/">Home</a><a href="about.html">About</a><a href="channels.html">Channels</a><a href="/api/tiktok/analytics">Analytics</a><a href="updates.html">Updates</a><a href="contact.html">Contact</a></nav>
+
 <h1>Terms of Service</h1>
-<p><em>Last updated: September 1, 2026</em></p>
+<p><em>Last updated: September 14, 2026</em></p>
 
 <p><strong>Viamour</strong> ("we", "us") is the brand and operator behind a
 portfolio of AI-generated short-form video channels, including
@@ -33,11 +38,12 @@ including TikTok, on behalf of the channels it operates — currently
 <strong>@marmaladepixels</strong>.</p>
 
 <h2>Use of the platform integration</h2>
-<p>Viamour's TikTok app is used solely to publish a channel's own original
-Content to that channel's own connected TikTok account via TikTok's
-Content Posting API, after the account owner explicitly authorizes the
-connection. It does not act on behalf of, or publish content for, any
-TikTok account that has not authorized Viamour.</p>
+<p>Viamour's TikTok app is used to publish a channel's own original Content
+to that channel's own connected TikTok account via TikTok's Content
+Posting API, and to read that same account's own video list and engagement
+stats via TikTok's Login Kit / Display API, after the account owner
+explicitly authorizes the connection. It does not act on behalf of, or
+access data for, any TikTok account that has not authorized Viamour.</p>
 
 <h2>Content</h2>
 <p>All Content published through this integration is created by Viamour on
@@ -54,7 +60,7 @@ without warranty of any kind.</p>
 above will reflect the most recent revision.</p>
 
 <footer>
-  <a href="index.html">Home</a> &middot; <a href="privacy.html">Privacy Policy</a>
+  <a href="/">Home</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="contact.html">Contact</a>
 </footer>
 </body>
 </html>

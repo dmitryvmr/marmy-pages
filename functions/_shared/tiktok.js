@@ -10,9 +10,30 @@ export const TIKTOK_VIDEO_INIT_URL =
   "https://open.tiktokapis.com/v2/post/publish/video/init/";
 export const TIKTOK_STATUS_URL =
   "https://open.tiktokapis.com/v2/post/publish/status/fetch/";
+// Login Kit / Display API (added 2026-09-14, mirrors the pipeline's own
+// fetch_performance.py --platform tiktok) - a separate product from the
+// Content Posting API endpoints above, gated by its own video.list/
+// user.info.stats scopes and its own Target User list in the Developer
+// Portal even though it shares one client_key with posting.
+export const TIKTOK_VIDEO_LIST_URL = "https://open.tiktokapis.com/v2/video/list/";
+export const TIKTOK_USER_INFO_URL = "https://open.tiktokapis.com/v2/user/info/";
 
 // Literal comma required - percent-encoding it (%2C) gets rejected by TikTok.
-export const TIKTOK_SCOPES = "user.info.basic,video.publish";
+// user.info.stats/video.list added 2026-09-14 to power the site's Analytics
+// page (see functions/api/tiktok/analytics.js) - requested together with
+// the original posting scopes so a re-auth never silently drops one, same
+// principle as tiktok_oauth.py's DEFAULT_SCOPE in the main pipeline.
+export const TIKTOK_SCOPES = "user.info.basic,user.info.stats,video.list,video.publish";
+
+// Where callback.js sends the browser after a successful connect - the
+// login flow that started it decides via ?return_to=, remembered across the
+// TikTok redirect in a short-lived cookie (login.js) since TikTok's own
+// redirect_uri is fixed to /api/tiktok/callback and can't vary per-flow.
+export const RETURN_TO_DESTINATIONS = {
+  composer: "/api/tiktok/composer",
+  analytics: "/api/tiktok/analytics",
+};
+export const DEFAULT_RETURN_TO = "composer";
 
 // Matches config.py's TIKTOK_SINGLE_CHUNK_MAX_BYTES. This demo composer only
 // implements a single-PUT upload (no chunking) - fine for short review-demo
@@ -65,6 +86,10 @@ export function parseCookies(request) {
 
 export function pkceCookieHeaders(name, value) {
   return `${name}=${encodeURIComponent(value)}; Path=${COOKIE_PATH}; Max-Age=${PKCE_COOKIE_MAX_AGE}; HttpOnly; Secure; SameSite=Lax`;
+}
+
+export function returnToCookieHeaders(value) {
+  return pkceCookieHeaders("tt_return_to", value);
 }
 
 export function sessionCookieHeader(sessionId, maxAgeSeconds) {
