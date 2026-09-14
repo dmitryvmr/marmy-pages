@@ -102,6 +102,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   nav.site a.nav-home { background: #d9822b; }
   nav.site a.nav-about { background: #3b82c4; }
   nav.site a.nav-channels { background: #2f9e6e; }
+  nav.site a.nav-reels { background: #0d9488; }
   nav.site a.nav-analytics { background: #8b5cf6; }
   nav.site a.nav-updates { background: #e0577b; }
   nav.site a.nav-contact { background: #64748b; }
@@ -134,7 +135,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   <img src="/assets/header-icon.png" alt="Viamour icon">
   <span>Viamour</span>
 </header>
-<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about.html" class="nav-about">About</a><a href="/channels.html" class="nav-channels">Channels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="/updates.html" class="nav-updates">Updates</a><a href="/contact.html" class="nav-contact">Contact</a></nav>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about.html" class="nav-about">About</a><a href="/channels.html" class="nav-channels">Channels</a><a href="/reels.html" class="nav-reels">Reels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="/updates.html" class="nav-updates">Updates</a><a href="/contact.html" class="nav-contact">Contact</a></nav>
 <h1>Channel Analytics</h1>
 <p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Real numbers from TikTok — views, likes, comments, and shares for every video, refreshed each time you load this page.</p>
 ${body}
