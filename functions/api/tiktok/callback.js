@@ -14,7 +14,7 @@ function errorPage(message) {
     `<!doctype html><title>Connection failed</title>
      <body style="font-family:sans-serif;max-width:32rem;margin:4rem auto;padding:0 1.5rem">
      <h1>Couldn't connect TikTok</h1><p>${message}</p>
-     <p><a href="/api/tiktok/login">Try again</a> &middot; <a href="/upload.html">Back</a></p></body>`,
+     <p><a href="/api/tiktok/login">Try again</a> &middot; <a href="/upload">Back</a></p></body>`,
     { status: 400, headers: { "Content-Type": "text/html; charset=utf-8" } }
   );
 }

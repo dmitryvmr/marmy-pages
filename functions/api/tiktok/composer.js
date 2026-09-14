@@ -150,10 +150,10 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
   <img src="/assets/header-icon.png" alt="Viamour icon">
   <span>Viamour</span>
 </header>
-<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about.html" class="nav-about">About</a><a href="/channels.html" class="nav-channels">Channels</a><a href="/reels.html" class="nav-reels">Reels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="/updates.html" class="nav-updates">Updates</a><a href="/contact.html" class="nav-contact">Contact</a></nav>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
 <h1>Composer</h1>
 ${body}
-<footer><a href="/">Home</a> &middot; <a href="/terms.html">Terms of Service</a> &middot; <a href="/privacy.html">Privacy Policy</a></footer>
+<footer><a href="/">Home</a> &middot; <a href="/terms">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a></footer>
 </body>
 </html>`;
 }
