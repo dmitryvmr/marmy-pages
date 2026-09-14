@@ -138,6 +138,9 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   .video-caption { font-size: 0.8rem; margin: 0 0 0.4rem; color: var(--ink); }
   .video-stats { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.75rem; color: var(--muted); }
   .video-date { font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; }
+  .other-platforms { margin-top: 2.5rem; padding-top: 0.5rem; border-top: 1px solid var(--line); }
+  .step { display: flex; gap: 0.9rem; align-items: flex-start; margin-top: 1.1rem; }
+  .step .num { flex: none; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: #faf3ea; color: var(--accent); font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
   footer a { color: var(--accent); }
 </style>
@@ -151,6 +154,27 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <h1>Channel Analytics</h1>
 <p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Real numbers from TikTok — views, likes, comments, and shares for every video, refreshed each time you load this page.</p>
 ${body}
+
+<div class="other-platforms">
+  <h2>Instagram, YouTube, and Facebook</h2>
+  <p>TikTok is the only platform with a live connect button on this page
+  today, but every Viamour channel's performance is tracked the same way
+  behind the scenes on all four platforms:</p>
+
+  <div class="step"><div class="num">IG</div><div><strong>Instagram.</strong> Reach, likes, comments, saves, and views for
+  every Reel, pulled straight from Instagram's own reporting.</div></div>
+  <div class="step"><div class="num">YT</div><div><strong>YouTube.</strong> Views, watch time, and subscriber growth for
+  every video, pulled straight from YouTube's own reporting.</div></div>
+  <div class="step"><div class="num">FB</div><div><strong>Facebook.</strong> Views, reactions, and reach for every Reel
+  posted to the connected Page, pulled straight from Facebook's own
+  reporting.</div></div>
+
+  <p>A public self-serve connect flow for these three, like the one above
+  for TikTok, isn't built yet — for now this data is available to each
+  channel's own owner. <a href="/contact">Get in touch</a> if you're
+  curious about it.</p>
+</div>
+
 <footer><a href="/">Home</a> &middot; <a href="/terms">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a></footer>
 </body>
 </html>`;
