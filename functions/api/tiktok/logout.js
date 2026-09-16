@@ -11,7 +11,7 @@ export async function onRequestGet(context) {
   }
 
   const referer = request.headers.get("Referer") || "";
-  const returnTo = referer.includes("/api/tiktok/analytics") ? "/api/tiktok/analytics" : "/upload";
+  const returnTo = referer.includes("/analytics") ? "/analytics" : "/upload";
 
   const headers = new Headers({ Location: returnTo });
   headers.append("Set-Cookie", clearCookieHeader("tt_session"));

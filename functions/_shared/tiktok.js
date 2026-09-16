@@ -20,7 +20,7 @@ export const TIKTOK_USER_INFO_URL = "https://open.tiktokapis.com/v2/user/info/";
 
 // Literal comma required - percent-encoding it (%2C) gets rejected by TikTok.
 // user.info.stats/video.list added 2026-09-14 to power the site's Analytics
-// page (see functions/api/tiktok/analytics.js) - requested together with
+// page (see functions/analytics.js) - requested together with
 // the original posting scopes so a re-auth never silently drops one, same
 // principle as tiktok_oauth.py's DEFAULT_SCOPE in the main pipeline.
 export const TIKTOK_SCOPES = "user.info.basic,user.info.stats,video.list,video.publish";
@@ -31,7 +31,7 @@ export const TIKTOK_SCOPES = "user.info.basic,user.info.stats,video.list,video.p
 // redirect_uri is fixed to /api/tiktok/callback and can't vary per-flow.
 export const RETURN_TO_DESTINATIONS = {
   composer: "/api/tiktok/composer",
-  analytics: "/api/tiktok/analytics",
+  analytics: "/analytics",
 };
 export const DEFAULT_RETURN_TO = "composer";
 

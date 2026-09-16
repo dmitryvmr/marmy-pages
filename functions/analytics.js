@@ -2,7 +2,7 @@ import {
   TIKTOK_VIDEO_LIST_URL,
   TIKTOK_USER_INFO_URL,
   parseCookies,
-} from "../../_shared/tiktok.js";
+} from "./_shared/tiktok.js";
 
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, (c) => (
@@ -90,12 +90,12 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <meta name="description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="canonical" href="https://viamour.com/api/tiktok/analytics">
+<link rel="canonical" href="https://viamour.com/analytics">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Viamour">
 <meta property="og:title" content="Analytics - Viamour - AI Content Made with Love">
 <meta property="og:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
-<meta property="og:url" content="https://viamour.com/api/tiktok/analytics">
+<meta property="og:url" content="https://viamour.com/analytics">
 <meta property="og:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Analytics - Viamour - AI Content Made with Love">
@@ -106,8 +106,8 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   * { box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 760px; margin: 0 auto; padding: 0 1.5rem 4rem; line-height: 1.6; color: var(--ink); }
   header.site { display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 1.5rem; }
-  header.site img { width: 36px; height: 36px; border-radius: 50%; }
-  header.site span { font-weight: 600; font-size: 1.1rem; color: var(--accent); }
+  header.site img { width: 44px; height: 44px; border-radius: 50%; }
+  header.site .brand { margin: 0; font-size: 1.6rem; font-weight: 700; color: var(--ink); }
   nav.site { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
   nav.site a { text-decoration: none; color: #fff; font-size: 0.82rem; font-weight: 600; padding: 0.4rem 0.9rem; border-radius: 999px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); transition: transform 0.15s ease, box-shadow 0.15s ease; }
   nav.site a:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
@@ -148,9 +148,9 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <body>
 <header class="site">
   <img src="/assets/header-icon.png" alt="Viamour icon">
-  <span>Viamour - AI Content Made with Love</span>
+  <p class="brand">Viamour - AI Content Made with Love</p>
 </header>
-<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-analytics">Analytics</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
 <h1>Channel Analytics</h1>
 <p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Real numbers from TikTok — views, likes, comments, and shares for every video, refreshed each time you load this page.</p>
 ${body}
@@ -180,7 +180,7 @@ ${body}
 </html>`;
 }
 
-// GET /api/tiktok/analytics - server-rendered: if connected, calls TikTok's
+// GET /analytics - server-rendered: if connected, calls TikTok's
 // video/list + user/info live and renders real stats; otherwise shows a
 // connect button (return_to=analytics so callback.js sends the browser back
 // here, not to the composer - see _shared/tiktok.js).
