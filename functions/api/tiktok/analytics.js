@@ -148,7 +148,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <body>
 <header class="site">
   <img src="/assets/header-icon.png" alt="Viamour icon">
-  <span>Viamour</span>
+  <span>Viamour - AI Content Made with Love</span>
 </header>
 <nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/api/tiktok/analytics" class="nav-analytics">Analytics</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
 <h1>Channel Analytics</h1>
