@@ -85,7 +85,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Analytics - Viamour</title>
+<title>Analytics - Viamour - AI Content Made with Love</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
@@ -93,12 +93,12 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <link rel="canonical" href="https://viamour.com/api/tiktok/analytics">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Viamour">
-<meta property="og:title" content="Analytics - Viamour">
+<meta property="og:title" content="Analytics - Viamour - AI Content Made with Love">
 <meta property="og:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <meta property="og:url" content="https://viamour.com/api/tiktok/analytics">
 <meta property="og:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Analytics - Viamour">
+<meta name="twitter:title" content="Analytics - Viamour - AI Content Made with Love">
 <meta name="twitter:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <meta name="twitter:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <style>
