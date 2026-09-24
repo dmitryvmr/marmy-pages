@@ -61,7 +61,13 @@ export async function onRequestPost(context) {
   const initData = await initRes.json();
 
   if (!initRes.ok || (initData.error && initData.error.code !== "ok")) {
-    return jsonResponse({ error: "init_failed", detail: initData }, 502);
+    // 500, not 502/504/52x - Cloudflare's edge reserves those specific codes
+    // for its own "Bad Gateway"-style branded HTML error page and silently
+    // discards the real response body (even a Worker/Pages Function's own
+    // deliberate JSON), which is what actually produced the confusing
+    // "Unexpected token '<', <!DOCTYPE...'" client-side error. Found 2026-09-24
+    // during TikTok demo recording.
+    return jsonResponse({ error: "init_failed", detail: initData }, 500);
   }
 
   const { publish_id, upload_url } = initData.data;
@@ -78,7 +84,7 @@ export async function onRequestPost(context) {
   if (!uploadRes.ok) {
     return jsonResponse(
       { error: "upload_failed", status: uploadRes.status, publish_id },
-      502
+      500 // see init_failed's comment above - not 502
     );
   }
 
