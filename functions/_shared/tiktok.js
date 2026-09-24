@@ -47,7 +47,13 @@ export function jsonResponse(data, status = 200) {
   });
 }
 
-const COOKIE_PATH = "/api/tiktok";
+const COOKIE_PATH = "/"; // must be site-wide - /analytics moved outside /api/tiktok on
+// 2026-09-16 (see root CLAUDE.md's TikTok section) but this cookie scope
+// wasn't updated then, so tt_session never reached /analytics, even
+// though the session itself was valid - composer.js worked fine (still
+// under /api/tiktok/) while analytics.js silently showed "not connected"
+// every time. Found 2026-09-24 during a dry-run for the TikTok review
+// demo recording - would have broken 2 of the 4 planned demo clips.
 const PKCE_COOKIE_MAX_AGE = 600; // 10 min - just long enough to complete the redirect round trip
 
 export function randomToken(byteLength = 32) {
