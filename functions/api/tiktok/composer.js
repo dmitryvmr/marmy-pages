@@ -33,19 +33,81 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
       <label for="video">Video file</label>
       <input type="file" id="video" name="video" accept="video/*" required>
       <p class="hint">Single-chunk upload only, up to 64MB.</p>
+      <video id="video-preview" class="preview" controls playsinline></video>
 
-      <button type="submit" class="publish" id="publish-btn">Publish</button>
+      <div class="disclosure">
+        <label class="checkbox-row">
+          <input type="checkbox" id="disclosure-toggle" name="disclosure_enabled" value="true">
+          Disclose this as commercial content
+        </label>
+        <div id="disclosure-options" class="disclosure-options" hidden>
+          <label class="checkbox-row">
+            <input type="checkbox" id="brand-organic" name="brand_organic_toggle" value="true">
+            Your Brand &mdash; you are promoting yourself or your own business
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="brand-content" name="brand_content_toggle" value="true">
+            Branded Content &mdash; you are promoting another brand or a third party
+          </label>
+          <p class="hint" id="disclosure-hint">Select at least one option above.</p>
+        </div>
+      </div>
+
+      <label class="checkbox-row consent-row">
+        <input type="checkbox" id="consent" name="consent" value="true">
+        By posting, you agree to TikTok's <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a>.
+      </label>
+
+      <button type="submit" class="publish" id="publish-btn" disabled>Publish</button>
       <p class="status" id="publish-status" aria-live="polite"></p>
     </form>
     <script>
       const form = document.getElementById("composer-form");
       const btn = document.getElementById("publish-btn");
       const statusEl = document.getElementById("publish-status");
+      const videoInput = document.getElementById("video");
+      const videoPreview = document.getElementById("video-preview");
+      const disclosureToggle = document.getElementById("disclosure-toggle");
+      const disclosureOptions = document.getElementById("disclosure-options");
+      const brandOrganic = document.getElementById("brand-organic");
+      const brandContent = document.getElementById("brand-content");
+      const consent = document.getElementById("consent");
 
       function setStatus(text, isError) {
         statusEl.textContent = text;
         statusEl.style.color = isError ? "#b3261e" : "var(--muted)";
       }
+
+      videoInput.addEventListener("change", () => {
+        const file = videoInput.files && videoInput.files[0];
+        if (file) {
+          videoPreview.src = URL.createObjectURL(file);
+          videoPreview.style.display = "block";
+        } else {
+          videoPreview.removeAttribute("src");
+          videoPreview.style.display = "none";
+        }
+        updatePublishState();
+      });
+
+      disclosureToggle.addEventListener("change", () => {
+        disclosureOptions.hidden = !disclosureToggle.checked;
+        if (!disclosureToggle.checked) {
+          brandOrganic.checked = false;
+          brandContent.checked = false;
+        }
+        updatePublishState();
+      });
+      brandOrganic.addEventListener("change", updatePublishState);
+      brandContent.addEventListener("change", updatePublishState);
+      consent.addEventListener("change", updatePublishState);
+
+      function updatePublishState() {
+        const hasVideo = !!(videoInput.files && videoInput.files[0]);
+        const disclosureSatisfied = !disclosureToggle.checked || brandOrganic.checked || brandContent.checked;
+        btn.disabled = !(hasVideo && consent.checked && disclosureSatisfied);
+      }
+      updatePublishState();
 
       async function pollStatus(publishId) {
         for (let i = 0; i < 40; i++) {
@@ -75,7 +137,7 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
           const data = await res.json();
           if (!res.ok || data.error) {
             setStatus("Failed: " + (data.message || data.error || res.status), true);
-            btn.disabled = false;
+            updatePublishState();
             return;
           }
           setStatus("Uploaded, waiting for TikTok to process...", false);
@@ -83,7 +145,7 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
         } catch (err) {
           setStatus("Failed: " + err.message, true);
         }
-        btn.disabled = false;
+        updatePublishState();
       });
     </script>
     `
@@ -139,7 +201,15 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
   .composer label { display: block; font-weight: 600; margin: 1rem 0 0.35rem; font-size: 0.9rem; }
   .composer textarea, .composer select, .composer input[type=file] { width: 100%; box-sizing: border-box; padding: 0.6rem; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
   .hint { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; }
+  .composer video.preview { display: none; width: 100%; margin-top: 0.75rem; border-radius: 8px; background: #000; max-height: 420px; }
+  .composer .disclosure { margin-top: 1.25rem; border: 1px solid var(--line); border-radius: 8px; padding: 0.85rem 1rem; }
+  .composer .disclosure-options { margin-top: 0.6rem; padding-left: 1.4rem; }
+  .composer .checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; font-weight: 400; font-size: 0.9rem; margin: 0.5rem 0; }
+  .composer .checkbox-row input[type=checkbox] { width: auto; margin-top: 0.2rem; flex: none; }
+  .composer .consent-row { margin-top: 1rem; }
+  .composer .consent-row a { color: var(--accent); }
   .composer button.publish { margin-top: 1.25rem; }
+  .composer button.publish[disabled] { opacity: 0.6; }
   .composer .status { min-height: 1.2em; }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
   footer a { color: var(--accent); }

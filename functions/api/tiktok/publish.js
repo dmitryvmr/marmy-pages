@@ -22,9 +22,25 @@ export async function onRequestPost(context) {
   const caption = (form.get("caption") || "").toString().slice(0, 2200);
   const privacyLevel = (form.get("privacy_level") || "SELF_ONLY").toString();
   const videoFile = form.get("video");
+  // Commercial content disclosure (TikTok's Content Sharing Guidelines,
+  // required for the Direct Post audit) - the toggle itself isn't sent to
+  // TikTok, only the two underlying booleans it reveals. The composer's own
+  // client-side JS already blocks submission unless consent is checked and,
+  // when disclosure is on, at least one of these is true - re-checked here
+  // too since a client can't be trusted to enforce this on its own.
+  const brandOrganic = form.get("brand_organic_toggle") === "true";
+  const brandContent = form.get("brand_content_toggle") === "true";
+  const disclosureOn = form.get("disclosure_enabled") === "true";
+  const consented = form.get("consent") === "true";
 
   if (!videoFile || typeof videoFile === "string") {
     return jsonResponse({ error: "missing_video" }, 400);
+  }
+  if (!consented) {
+    return jsonResponse({ error: "consent_required", message: "You must agree to TikTok's Music Usage Confirmation before posting." }, 400);
+  }
+  if (disclosureOn && !brandOrganic && !brandContent) {
+    return jsonResponse({ error: "disclosure_incomplete", message: "Select at least one commercial content option (Your Brand or Branded Content)." }, 400);
   }
   if (videoFile.size > TIKTOK_SINGLE_CHUNK_MAX_BYTES) {
     return jsonResponse(
@@ -49,6 +65,8 @@ export async function onRequestPost(context) {
         disable_duet: false,
         disable_comment: false,
         disable_stitch: false,
+        brand_content_toggle: brandContent,
+        brand_organic_toggle: brandOrganic,
       },
       source_info: {
         source: "FILE_UPLOAD",
