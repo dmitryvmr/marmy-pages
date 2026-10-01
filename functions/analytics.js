@@ -85,7 +85,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Analytics - Viamour - AI Content Made with Love</title>
+<title>TikTok - Viamour - AI Content Made with Love</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
@@ -93,12 +93,12 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <link rel="canonical" href="https://viamour.com/analytics">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Viamour">
-<meta property="og:title" content="Analytics - Viamour - AI Content Made with Love">
+<meta property="og:title" content="TikTok - Viamour - AI Content Made with Love">
 <meta property="og:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <meta property="og:url" content="https://viamour.com/analytics">
 <meta property="og:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Analytics - Viamour - AI Content Made with Love">
+<meta name="twitter:title" content="TikTok - Viamour - AI Content Made with Love">
 <meta name="twitter:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <meta name="twitter:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <style>
@@ -115,7 +115,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   nav.site a.nav-about { background: #3b82c4; }
   nav.site a.nav-channels { background: #2f9e6e; }
   nav.site a.nav-reels { background: #0d9488; }
-  nav.site a.nav-analytics { background: #8b5cf6; } nav.site a.nav-youtube { background: #c4302b; }
+  nav.site a.nav-tiktok { background: #8b5cf6; } nav.site a.nav-youtube { background: #c4302b; }
   nav.site a.nav-updates { background: #e0577b; }
   nav.site a.nav-contact { background: #64748b; }
   h1 { font-size: 1.3rem; }
@@ -150,8 +150,8 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   <img src="/assets/header-icon.png" alt="Viamour icon">
   <p class="brand">Viamour - AI Content Made with Love</p>
 </header>
-<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-analytics">Analytics</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
-<h1>Channel Analytics</h1>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-tiktok">TikTok</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
+<h1>TikTok</h1>
 <p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Real numbers from TikTok — views, likes, comments, and shares for every video, refreshed each time you load this page.</p>
 ${body}
 

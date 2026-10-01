@@ -202,7 +202,7 @@ function page({ connected, channelTitle, channelThumbnail, stats, analytics, vid
   nav.site a.nav-about { background: #3b82c4; }
   nav.site a.nav-channels { background: #2f9e6e; }
   nav.site a.nav-reels { background: #0d9488; }
-  nav.site a.nav-analytics { background: #8b5cf6; }
+  nav.site a.nav-tiktok { background: #8b5cf6; }
   nav.site a.nav-youtube { background: #c4302b; }
   nav.site a.nav-updates { background: #e0577b; }
   nav.site a.nav-contact { background: #64748b; }
@@ -243,7 +243,7 @@ function page({ connected, channelTitle, channelThumbnail, stats, analytics, vid
   <img src="/assets/header-icon.png" alt="Viamour icon">
   <p class="brand">Viamour - AI Content Made with Love</p>
 </header>
-<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-analytics">Analytics</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-tiktok">TikTok</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
 <h1>YouTube</h1>
 <p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Connect a channel to see its real videos and analytics, and publish a new video directly from this page.</p>
 ${body}
