@@ -106,17 +106,19 @@ and account data are never sent to it, or to any other third-party
 service. We may disclose data if required to do so by law.</p>
 
 <h2>How we protect your data</h2>
-<p>Access and refresh tokens are stored only in access-controlled, private
-infrastructure: Cloudflare's KV storage (encrypted at rest) for this
-website's own session data, and a private, access-restricted repository
-for our automation pipeline's credentials. Tokens are never exposed to
-any public-facing page, client-side code, or third party. All
-communication with TikTok's and Google's APIs happens over encrypted
-HTTPS/TLS connections. Session identifiers stored in your browser are
-marked HttpOnly and Secure, meaning they cannot be read by page scripts
-and are only ever sent over an encrypted connection. Access to stored
-credentials is limited to the operators of the specific channel account
-they belong to.</p>
+<p>Your TikTok and Google access and refresh tokens are the most sensitive
+data we hold, since they grant the ability to act on your connected
+account — we protect them accordingly. They are stored only in
+access-controlled, private infrastructure: Cloudflare's KV storage
+(encrypted at rest) for this website's own session data, and a private,
+access-restricted repository for our automation pipeline's credentials.
+Tokens are never exposed to any public-facing page, client-side code, or
+third party. All communication with TikTok's and Google's APIs happens
+over encrypted HTTPS/TLS connections. Session identifiers stored in your
+browser are marked HttpOnly and Secure, meaning they cannot be read by
+page scripts and are only ever sent over an encrypted connection. Access
+to stored credentials is limited to the operators of the specific channel
+account they belong to.</p>
 
 <h2>Data retention and deletion</h2>
 <p>We retain a connected channel's access and refresh tokens, and the
