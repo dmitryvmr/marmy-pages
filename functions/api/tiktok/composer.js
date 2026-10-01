@@ -187,7 +187,7 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
   nav.site a.nav-about { background: #3b82c4; }
   nav.site a.nav-channels { background: #2f9e6e; }
   nav.site a.nav-reels { background: #0d9488; }
-  nav.site a.nav-analytics { background: #8b5cf6; }
+  nav.site a.nav-analytics { background: #8b5cf6; } nav.site a.nav-youtube { background: #c4302b; }
   nav.site a.nav-updates { background: #e0577b; }
   nav.site a.nav-contact { background: #64748b; }
   h1 { font-size: 1.3rem; }
@@ -220,7 +220,7 @@ function page({ connected, nickname, avatarUrl, privacyOptions }) {
   <img src="/assets/header-icon.png" alt="Viamour icon">
   <span>Viamour - AI Content Made with Love</span>
 </header>
-<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-analytics">Analytics</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-analytics">Analytics</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
 <h1>Composer</h1>
 ${body}
 <footer><a href="/">Home</a> &middot; <a href="/terms">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/sitemap.xml">Sitemap</a></footer>

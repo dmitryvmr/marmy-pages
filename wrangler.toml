@@ -5,3 +5,7 @@ compatibility_date = "2026-09-01"
 [[kv_namespaces]]
 binding = "TIKTOK_SESSIONS"
 id = "243e266f81cd480ba9e5a07c816df93b"
+
+[[kv_namespaces]]
+binding = "YOUTUBE_SESSIONS"
+id = "a34ec1d645364099ad3f3bc138a4dce6"
