@@ -290,12 +290,17 @@ export async function onRequestGet(context) {
     const uploadsPlaylistId = channel.contentDetails?.relatedPlaylists?.uploads;
     let videos = [];
     if (uploadsPlaylistId) {
+      // part=status (not just snippet) so each item's privacyStatus is
+      // available to filter on - maxResults=25 to still have 10 public
+      // ones left after private/unlisted uploads are filtered out below.
       const videosRes = await fetch(
-        `${YOUTUBE_API_ROOT}/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=10`,
+        `${YOUTUBE_API_ROOT}/playlistItems?part=snippet,status&playlistId=${uploadsPlaylistId}&maxResults=25`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       const videosData = await videosRes.json();
-      videos = videosData?.items || [];
+      videos = (videosData?.items || [])
+        .filter((v) => v.status?.privacyStatus === "public")
+        .slice(0, 10);
     }
 
     const endDate = new Date().toISOString().slice(0, 10);
