@@ -157,7 +157,7 @@ function page({ connected, channelTitle, channelThumbnail, stats, analytics, vid
 </header>
 <nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/tiktok" class="nav-tiktok">TikTok</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
 <h1>YouTube</h1>
-<p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Connect a channel to see its real videos and analytics.</p>
+<p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Real numbers from YouTube — views, watch time, subscribers, and analytics for your channel, refreshed each time you load this page.</p>
 ${body}
 <footer><a href="/">Home</a> &middot; <a href="/terms">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/sitemap.xml">Sitemap</a></footer>
 </body>
