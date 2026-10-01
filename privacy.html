@@ -47,7 +47,7 @@
 <nav class="site"><a href="/" class="nav-home">Home</a><a href="about" class="nav-about">About</a><a href="channels" class="nav-channels">Channels</a><a href="reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-analytics">Analytics</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="updates" class="nav-updates">Updates</a><a href="contact" class="nav-contact">Contact</a></nav>
 
 <h1>Privacy Policy</h1>
-<p><em>Last updated: September 29, 2026</em></p>
+<p><em>Last updated: October 1, 2026</em></p>
 
 <p><strong>Viamour</strong> ("we", "us") is the brand and operator behind a
 portfolio of AI-generated short-form video channels, published to social
@@ -78,7 +78,7 @@ the channel accounts Viamour itself operates.</p>
 <ul>
   <li><code>https://www.googleapis.com/auth/youtube.upload</code> — to publish a channel's own video content to its own connected YouTube channel.</li>
   <li><code>https://www.googleapis.com/auth/yt-analytics.readonly</code> — to read that same connected channel's own performance data (views, watch time, subscriber changes, likes, comments, shares) for videos it has published, used internally to guide future content decisions.</li>
-  <li><code>https://www.googleapis.com/auth/youtube.readonly</code> — to look up a connected channel's own existing videos, used to reconcile past uploads with our internal records.</li>
+  <li><code>https://www.googleapis.com/auth/youtube.readonly</code> — to list a connected channel's own existing videos, shown on our <a href="/youtube">YouTube</a> page, and to reconcile past uploads with our internal records.</li>
 </ul>
 <p>Each YouTube channel is connected only after its owner explicitly
 authorizes Viamour via Google's own OAuth consent screen. We do not
@@ -86,18 +86,50 @@ collect, store, or process personal data belonging to YouTube viewers or
 other YouTube users — only the credentials and channel-level data
 belonging to the channel accounts Viamour itself operates.</p>
 
-<h2>How tokens are used</h2>
-<p>Access and refresh tokens issued by TikTok and Google are used
-exclusively to publish a channel's own content to that channel's own
-connected account and to read that same account's own stats back to it,
-and are stored securely for those purposes only. They are never shared
-with third parties or used for any purpose beyond operating that channel's
-own connected account.</p>
+<h2>How we use your data</h2>
+<p>We use the data described above exclusively to operate the channel
+account you've connected: publishing content you've approved, confirming
+it published successfully, and showing that channel's own real videos and
+performance data back to its operator on our <a href="/analytics">Analytics</a>
+and <a href="/youtube">YouTube</a> pages, to inform future content
+decisions. We do not use your TikTok or Google user data for advertising,
+to build advertising profiles, to train any AI model, or for any purpose
+unrelated to operating your own connected channel.</p>
 
-<h2>Third-party services</h2>
-<p>Video content is generated using a third-party AI generation service
-before being published to TikTok or YouTube; no TikTok or Google user
-data is shared with that service.</p>
+<h2>Who we share your data with</h2>
+<p>We do not sell, rent, trade, or otherwise share your TikTok or Google
+user data with any third party, advertiser, or data broker. Video content
+is generated using a third-party AI video generation service before being
+published — the prompts and generated video files pass through that
+service, but your TikTok or Google account credentials, access tokens,
+and account data are never sent to it, or to any other third-party
+service. We may disclose data if required to do so by law.</p>
+
+<h2>How we protect your data</h2>
+<p>Access and refresh tokens are stored only in access-controlled, private
+infrastructure: Cloudflare's KV storage (encrypted at rest) for this
+website's own session data, and a private, access-restricted repository
+for our automation pipeline's credentials. Tokens are never exposed to
+any public-facing page, client-side code, or third party. All
+communication with TikTok's and Google's APIs happens over encrypted
+HTTPS/TLS connections. Session identifiers stored in your browser are
+marked HttpOnly and Secure, meaning they cannot be read by page scripts
+and are only ever sent over an encrypted connection. Access to stored
+credentials is limited to the operators of the specific channel account
+they belong to.</p>
+
+<h2>Data retention and deletion</h2>
+<p>We retain a connected channel's access and refresh tokens, and the
+associated channel data described above, for as long as that channel
+remains connected to Viamour. You may disconnect a channel, and request
+deletion of all associated data, at any time — by clicking "Disconnect"
+on our <a href="/analytics">Analytics</a> or <a href="/youtube">YouTube</a>
+page, by revoking Viamour's access directly from your TikTok or Google
+account's own security settings, or by contacting
+<a href="mailto:support@viamour.com">support@viamour.com</a>. Any of
+these immediately invalidates our stored token. We permanently delete a
+disconnected channel's stored credentials and associated data within 30
+days of disconnection or a deletion request.</p>
 
 <h2>Changes</h2>
 <p>This policy may be updated from time to time; the "last updated" date
