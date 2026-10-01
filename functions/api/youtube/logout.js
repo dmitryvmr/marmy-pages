@@ -34,7 +34,10 @@ export async function onRequestGet(context) {
     await env.YOUTUBE_SESSIONS.delete(cookies.yt_session);
   }
 
-  const headers = new Headers({ Location: "/youtube" });
+  const referer = request.headers.get("Referer") || "";
+  const returnTo = referer.includes("/api/youtube/composer") ? "/api/youtube/composer" : "/youtube";
+
+  const headers = new Headers({ Location: returnTo });
   headers.append("Set-Cookie", clearCookieHeader("yt_session"));
   return new Response(null, { status: 302, headers });
 }

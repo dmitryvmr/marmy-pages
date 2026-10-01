@@ -32,6 +32,17 @@ const COOKIE_PATH = "/"; // site-wide, same reasoning as tiktok.js's COOKIE_PATH
 const STATE_COOKIE_MAX_AGE = 600; // 10 min - just long enough for the redirect round trip
 const TOKEN_REFRESH_MARGIN_SECONDS = 120;
 
+// Where callback.js sends the browser after a successful connect - same
+// return_to pattern as _shared/tiktok.js, needed because Google's
+// redirect_uri is fixed to /api/youtube/callback and can't vary per-flow.
+// /youtube (the stats/video-list page) and /api/youtube/composer (the
+// upload page) each have their own Connect button.
+export const RETURN_TO_DESTINATIONS = {
+  youtube: "/youtube",
+  composer: "/api/youtube/composer",
+};
+export const DEFAULT_RETURN_TO = "youtube";
+
 export function jsonResponse(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -60,6 +71,10 @@ export function parseCookies(request) {
 
 export function stateCookieHeader(value) {
   return `yt_state=${encodeURIComponent(value)}; Path=${COOKIE_PATH}; Max-Age=${STATE_COOKIE_MAX_AGE}; HttpOnly; Secure; SameSite=Lax`;
+}
+
+export function returnToCookieHeader(value) {
+  return `yt_return_to=${encodeURIComponent(value)}; Path=${COOKIE_PATH}; Max-Age=${STATE_COOKIE_MAX_AGE}; HttpOnly; Secure; SameSite=Lax`;
 }
 
 export function sessionCookieHeader(sessionId, maxAgeSeconds) {

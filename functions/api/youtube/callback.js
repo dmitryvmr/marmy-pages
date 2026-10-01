@@ -1,6 +1,8 @@
 import {
   GOOGLE_TOKEN_URL,
   YOUTUBE_API_ROOT,
+  RETURN_TO_DESTINATIONS,
+  DEFAULT_RETURN_TO,
   parseCookies,
   randomToken,
   sessionCookieHeader,
@@ -93,8 +95,14 @@ export async function onRequestGet(context) {
     expirationTtl: 60 * 60 * 24 * 30,
   });
 
-  const headers = new Headers({ Location: "/youtube" });
+  const requestedReturnTo = cookies.yt_return_to;
+  const returnTo = RETURN_TO_DESTINATIONS[requestedReturnTo]
+    ? RETURN_TO_DESTINATIONS[requestedReturnTo]
+    : RETURN_TO_DESTINATIONS[DEFAULT_RETURN_TO];
+
+  const headers = new Headers({ Location: returnTo });
   headers.append("Set-Cookie", sessionCookieHeader(sessionId, 60 * 60 * 24 * 30));
   headers.append("Set-Cookie", clearCookieHeader("yt_state"));
+  headers.append("Set-Cookie", clearCookieHeader("yt_return_to"));
   return new Response(null, { status: 302, headers });
 }

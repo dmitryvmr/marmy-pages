@@ -9,7 +9,7 @@ import {
   returnToCookieHeaders,
 } from "../../_shared/tiktok.js";
 
-// GET /api/tiktok/login[?return_to=composer|analytics] - starts the
+// GET /api/tiktok/login[?return_to=composer|tiktok] - starts the
 // OAuth/PKCE flow, redirects to TikTok's own authorize screen (the actual
 // login/consent UI - never rendered by us). return_to (default "composer")
 // is remembered in a cookie so callback.js knows which page to send the

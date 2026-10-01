@@ -51,7 +51,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
     <p>Connect a TikTok account to see its real videos and stats — views, likes,
     comments, and shares — pulled straight from TikTok and updated every time
     you load this page.</p>
-    <a href="/api/tiktok/login?return_to=analytics" class="connect">Connect TikTok account</a>
+    <a href="/api/tiktok/login?return_to=tiktok" class="connect">Connect TikTok account</a>
     `;
   } else if (apiError) {
     body = `
@@ -78,6 +78,8 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 
     <h2>Recent videos</h2>
     ${videos.length ? `<div class="video-grid">${videos.map(videoCard).join("")}</div>` : `<p>No videos returned yet.</p>`}
+
+    <p class="composer-pointer">Want to publish a new video? <a href="/api/tiktok/composer">Click here &rarr;</a></p>
     `;
   }
 
@@ -90,12 +92,12 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
 <meta name="description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="canonical" href="https://viamour.com/analytics">
+<link rel="canonical" href="https://viamour.com/tiktok">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Viamour">
 <meta property="og:title" content="TikTok - Viamour - AI Content Made with Love">
 <meta property="og:description" content="Real per-video stats - views, likes, comments, and shares - for a connected Viamour channel's TikTok account.">
-<meta property="og:url" content="https://viamour.com/analytics">
+<meta property="og:url" content="https://viamour.com/tiktok">
 <meta property="og:image" content="https://viamour.com/assets/marmy-icon-source.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TikTok - Viamour - AI Content Made with Love">
@@ -115,7 +117,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   nav.site a.nav-about { background: #3b82c4; }
   nav.site a.nav-channels { background: #2f9e6e; }
   nav.site a.nav-reels { background: #0d9488; }
-  nav.site a.nav-tiktok { background: #8b5cf6; } nav.site a.nav-youtube { background: #c4302b; }
+  nav.site a.nav-tiktok { background: #000; } nav.site a.nav-youtube { background: #c4302b; }
   nav.site a.nav-updates { background: #e0577b; }
   nav.site a.nav-contact { background: #64748b; }
   h1 { font-size: 1.3rem; }
@@ -138,6 +140,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   .video-caption { font-size: 0.8rem; margin: 0 0 0.4rem; color: var(--ink); }
   .video-stats { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.75rem; color: var(--muted); }
   .video-date { font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; }
+  .composer-pointer { margin-top: 2rem; }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--muted); }
   footer a { color: var(--accent); }
 </style>
@@ -147,7 +150,7 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   <img src="/assets/header-icon.png" alt="Viamour icon">
   <p class="brand">Viamour - AI Content Made with Love</p>
 </header>
-<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/analytics" class="nav-tiktok">TikTok</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
+<nav class="site"><a href="/" class="nav-home">Home</a><a href="/about" class="nav-about">About</a><a href="/channels" class="nav-channels">Channels</a><a href="/reels" class="nav-reels">Reels</a><a href="/tiktok" class="nav-tiktok">TikTok</a><a href="/youtube" class="nav-youtube">YouTube</a><a href="/updates" class="nav-updates">Updates</a><a href="/contact" class="nav-contact">Contact</a></nav>
 <h1>TikTok</h1>
 <p style="color:var(--muted);font-size:0.9rem;margin-top:-0.5rem">Real numbers from TikTok — views, likes, comments, and shares for every video, refreshed each time you load this page.</p>
 ${body}
@@ -157,9 +160,10 @@ ${body}
 </html>`;
 }
 
-// GET /analytics - server-rendered: if connected, calls TikTok's
+// GET /tiktok (renamed from /analytics 2026-10-01, TikTok-only, not shared
+// with YouTube) - server-rendered: if connected, calls TikTok's
 // video/list + user/info live and renders real stats; otherwise shows a
-// connect button (return_to=analytics so callback.js sends the browser back
+// connect button (return_to=tiktok so callback.js sends the browser back
 // here, not to the composer - see _shared/tiktok.js).
 export async function onRequestGet(context) {
   const { request, env } = context;
