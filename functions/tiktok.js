@@ -48,9 +48,6 @@ function page({ connected, nickname, avatarUrl, user, videos, apiError }) {
   let body;
   if (!connected) {
     body = `
-    <p>Connect a TikTok account to see its real videos and stats — views, likes,
-    comments, and shares — pulled straight from TikTok and updated every time
-    you load this page.</p>
     <a href="/api/tiktok/login?return_to=tiktok" class="connect">Connect TikTok account</a>
     `;
   } else if (apiError) {
